@@ -6,6 +6,7 @@ class Thermostat {
     this.isOn = false;
     this.temperature = 0;
     this.minTemp = 10;
+    this.maxTemp = 32;
     this.powerSaverMode = false;
   }
 
@@ -25,7 +26,10 @@ class Thermostat {
   increase(temp) {
     if (this.powerSaverMode === true && this.temperature + temp > 25) {
         this.temperature = 25;
-    } else {
+    } else if (this.temperature + temp > 32) {
+        this.temperature = 32;
+    }
+    else {
         this.temperature += temp;
     }
   }
