@@ -36,5 +36,12 @@ describe ('Thermostat', function() {
       expect(thermostat.getTemperature()).toEqual(15)
     })
 
+  describe ('power saver', function() {
+    it('if on, max temp is 25 degrees', function() {
+      thermostat.powerSaver(true);
+      expect(thermostat.increase(10)).toEqual(25)
+    })
+  })
+
   })
 })
