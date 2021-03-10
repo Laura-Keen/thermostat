@@ -5,7 +5,8 @@ class Thermostat {
   constructor() {
     this.isOn = false;
     this.temperature = 0;
-    this.min_temp = 10;
+    this.minTemp = 10;
+    this.powerSaverMode = false;
   }
 
   start() {
@@ -22,15 +23,23 @@ class Thermostat {
   }
 
   increase(temp) {
-    this.temperature += temp;
+    if (this.powerSaverMode === true && this.temperature + temp > 25) {
+        this.temperature = 25;
+    } else {
+        this.temperature += temp;
+    }
   }
 
   decrease(temp) {
-    if (this.temperature - temp > this.min_temp) {
+    if (this.temperature - temp > this.minTemp) {
           this.temperature -= temp;
     } else {
-      this.temperature = this.min_temp;
+      this.temperature = this.minTemp;
     }
+  }
+
+  powerSaver(status) {
+    this.powerSaverMode = status;
   }
 
 }
