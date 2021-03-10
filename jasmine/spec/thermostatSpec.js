@@ -18,6 +18,11 @@ describe ('Thermostat', function() {
     it('checks that thermostat is at 20 degrees', function() {
       expect(thermostat.getTemperature()).toEqual(20);
     })
+
+    it('has a minimum temperature of 10 degrees', function(){
+      thermostat.decrease(15);
+      expect(thermostat.getTemperature()).toEqual(10);
+    })
   })
 
   describe ('changes temperature', function() {

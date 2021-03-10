@@ -25,4 +25,8 @@ class Thermostat {
     this.temperature += temp;
   }
 
+  decrease(temp) {
+    this.temperature -= temp;
+  }
+
 }
