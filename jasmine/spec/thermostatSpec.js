@@ -37,6 +37,12 @@ describe ('Thermostat', function() {
     })
 
   describe ('power saver', function() {
+    it('is on by default', function() {
+      expect(thermostat.powerSaverMode).toEqual(true);
+      thermostat.powerSaver(false);
+      expect(thermostat.powerSaverMode).toEqual(false);
+    })
+  
     it('if on, max temp is 25 degrees', function() {
       thermostat.powerSaver(true);
       thermostat.increase(10);
@@ -48,6 +54,7 @@ describe ('Thermostat', function() {
       thermostat.increase(20);
       expect(thermostat.getTemperature()).toEqual(32);
     })
+
   })
 
   })

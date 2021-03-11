@@ -7,7 +7,7 @@ class Thermostat {
     this.temperature = 0;
     this.minTemp = 10;
     this.maxTemp = 32;
-    this.powerSaverMode = false;
+    this.powerSaverMode = true;
   }
 
   start() {
