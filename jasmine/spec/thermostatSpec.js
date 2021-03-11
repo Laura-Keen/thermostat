@@ -36,6 +36,13 @@ describe ('Thermostat', function() {
       expect(thermostat.getTemperature()).toEqual(15)
     })
 
+    it('should reset the temperature to 20 degrees', function() {
+      thermostat.increase(10);
+      thermostat.reset();
+      expect(thermostat.getTemperature()).toEqual(20);
+    })
+  })
+
   describe ('power saver', function() {
     it('is on by default', function() {
       expect(thermostat.powerSaverMode).toEqual(true);
@@ -54,8 +61,24 @@ describe ('Thermostat', function() {
       thermostat.increase(20);
       expect(thermostat.getTemperature()).toEqual(32);
     })
-
   })
 
+  describe('energy usage', function() {
+    it('reports high usage when temperature is 25 or higher', function() {
+      thermostat.powerSaver(false);
+      thermostat.increase(30);
+      expect(thermostat.energyUsage()).toEqual("High");
+    })
+
+    it('reports medium usage when the temperature is between 19 and 25', function() {
+      expect(thermostat.energyUsage()).toEqual("Medium");
+    })
+
+    it('reports low usage when temperature is 18 or lower', function() {
+      thermostat.decrease(2);
+      expect(thermostat.energyUsage()).toEqual("Low");
+    })
   })
+
+  
 })
