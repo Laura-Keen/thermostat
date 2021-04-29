@@ -45,19 +45,18 @@ describe ('Thermostat', function() {
 
   describe ('power saver', function() {
     it('is on by default', function() {
-      expect(thermostat.powerSaverMode).toEqual(true);
-      thermostat.powerSaver(false);
-      expect(thermostat.powerSaverMode).toEqual(false);
+      expect(thermostat.powerSaverMode).toEqual('On');
+      thermostat.powerSaver();
+      expect(thermostat.powerSaverMode).toEqual('Off');
     })
   
     it('if on, max temp is 25 degrees', function() {
-      thermostat.powerSaver(true);
       thermostat.increase(10);
       expect(thermostat.getTemperature()).toEqual(25);
     })
 
     it('if off, max temp is 32 degrees', function() {
-      thermostat.powerSaver(false);
+      thermostat.powerSaver('Off');
       thermostat.increase(20);
       expect(thermostat.getTemperature()).toEqual(32);
     })
@@ -65,7 +64,7 @@ describe ('Thermostat', function() {
 
   describe('energy usage', function() {
     it('reports high usage when temperature is 25 or higher', function() {
-      thermostat.powerSaver(false);
+      thermostat.powerSaver('Off');
       thermostat.increase(30);
       expect(thermostat.energyUsage()).toEqual("High");
     })

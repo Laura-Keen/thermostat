@@ -4,10 +4,10 @@ class Thermostat {
 
   constructor() {
     this.isOn = false;
-    this.temperature = 0;
+    this.temperature = 20;
     this.minTemp = 10;
     this.maxTemp = 32;
-    this.powerSaverMode = true;
+    this.powerSaverMode = 'On';
     this.energyUse = "Medium";
   }
 
@@ -29,7 +29,7 @@ class Thermostat {
   }
 
   increase(temp) {
-    if (this.powerSaverMode === true && this.temperature + temp > 25) {
+    if (this.powerSaverMode === 'On' && this.temperature + temp > 25) {
         this.temperature = 25;
     } else if (this.temperature + temp > 32) {
         this.temperature = 32;
@@ -47,8 +47,13 @@ class Thermostat {
     }
   }
 
-  powerSaver(status) {
-    this.powerSaverMode = status;
+  powerSaver() {
+    if (this.powerSaverMode === 'On') {
+      this.powerSaverMode = 'Off';
+    } else {
+      this.powerSaverMode = 'On';
+    }
+
   }
 
   energyUsage() {
